@@ -29,29 +29,26 @@ getCameraPermissions = async (id) =>{
   }
 
   handleBarCodeScanned = async({type, data})=>{
-    const {buttonState} = this.state
-
-    if(buttonState==="BookId"){
-      this.setState({
-        scanned: true,
-        scannedBookId: data,
-        buttonState: 'normal'
-      });
-    }
-    else if(buttonState==="StudentId"){
-      this.setState({
-        scanned: true,
-        scannedStudentId: data,
-        buttonState: 'normal'
-      });
-    }
-    
+    this.setState({
+      scanned:true,
+      scannedData: data,
+      buttonState: 'normal'
+    });
   }
 
 render(){
     const hasCameraPermissions = this.state.hasCameraPermissions;
       const scanned = this.state.scanned;
       const buttonState = this.state.buttonState;
+if(buttonState === "clicked" && hasCameraPermissions){
+  return(
+    <BarCodeScanner
+    onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
+    />
+  )
+}
+
+else if(buttonState === "normal"){
 return(
 <View style={styles.container}>
     <Text style={styles.displayText}>{
@@ -64,6 +61,7 @@ return(
     </TouchableOpacity>
 </View>
 )
+}
 }
 }
 
