@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Permissions from 'expo-permissions'
 import {BarCodeScanner} from 'expo-barcode-scanner'
 
@@ -53,9 +53,14 @@ render(){
       const scanned = this.state.scanned;
       const buttonState = this.state.buttonState;
 return(
-<View>
-    <TouchableOpacity>
-        <Text >SCAN QR CODE</Text>
+<View style={styles.container}>
+    <Text style={styles.displayText}>{
+      hasCameraPermissions===true ? this.state.scannedData: "REQUEST CAMERA PERMISSION"
+    }</Text>
+    <TouchableOpacity
+    onPress={this.getCameraPermissions}
+    style={styles.displayText}>
+      <Text style={styles.scanButton} >SCAN QR CODE</Text>
     </TouchableOpacity>
 </View>
 )
