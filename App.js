@@ -4,12 +4,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import Scanner from "./Screens/ScanScreen"
 
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Scanner/>
-    </View>
-  );
+export default class App extends React.Component {
+  render(){
+    return (
+      
+        <Scanner/>
+      
+    );
+  }
 }
 
 const styles = StyleSheet.create({

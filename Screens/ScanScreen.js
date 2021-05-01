@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Permissions from 'expo-permissions'
 import {BarCodeScanner} from 'expo-barcode-scanner'
 
@@ -54,9 +54,12 @@ if(buttonState !== "normal" && hasCameraPermissions){
 else if(buttonState === "normal"){
 return(
 <View style={styles.container}>
+<Image source={require("../assets/img.jpg")}
+style={{width:200, height: 200}}/>
     <Text style={styles.displayText}>{
       hasCameraPermissions===true ? this.state.scannedData: "REQUEST CAMERA PERMISSION"
-    }</Text>
+    }
+    </Text>
     <TouchableOpacity
     onPress={this.getCameraPermissions}
     style={styles.displayText}>
@@ -69,26 +72,6 @@ return(
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      displayText:{
-        fontSize: 15,
-        textDecorationLine: 'underline'
-      },
-      scanButton:{
-        backgroundColor: '#2196F3',
-        padding: 10,
-        margin: 10
-      },
-      
-
-
-})
-
-  const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
@@ -120,9 +103,11 @@ const styles = StyleSheet.create({
       fontSize: 20
     },
     scanButton:{
+
       backgroundColor: '#66BB6A',
-      width: 50,
-      borderWidth: 1.5,
+      width: 120,
+      borderRadius:3,
       borderLeftWidth: 0
+      
     }
   });
